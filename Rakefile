@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "omniauth-generator"
   gem.homepage = "http://github.com/fukajun/omniauth-generator"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "omniauth generator"
+  gem.description = "omniauth generator"
   gem.email = "fukajun.shark@gmail.com"
   gem.authors = ["Jun Fukaya"]
   # dependencies defined in Gemfile
