@@ -19,7 +19,7 @@ class AuthGenerator < Rails::Generators::NamedBase
 
   def install
     # session_controllerに追加
-    copy_file "sesssions_controller.rb", "app/controllers/sessions_controller.rb"
+    copy_file "sessions_controller.rb", "app/controllers/sessions_controller.rb"
     # application controllerに追加
     inject_into_class "app/controllers/sessions_controller.rb", ApplicationController, APP_CONTROLLER_LINE
 
