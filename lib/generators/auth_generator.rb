@@ -22,7 +22,9 @@ class AuthGenerator < Rails::Generators::NamedBase
     copy_file "sessions_controller.rb", "app/controllers/sessions_controller.rb"
 
     # application controllerに追加
-    inject_into_class "app/controllers/sessions_controller.rb", ApplicationController, APP_CONTROLLER_LINE
+    inject_into_class "app/controllers/application_controller.rb", ApplicationController, APP_CONTROLLER_LINE
 
+    # session_controllerに追加
+    copy_file "migration_create_user.rb", "db/migrate/#{Time.now.strftime('%Y%m%d%H%M%S')}_create_user.rb"
   end
 end
