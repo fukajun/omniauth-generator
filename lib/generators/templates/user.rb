@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  # define relation
-  has_many :slides
   def self.create_with_omniauth(hash)
     create! do |user|
       user.provider = hash['provider']
