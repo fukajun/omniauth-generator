@@ -4,7 +4,7 @@ class AuthGenerator < Rails::Generators::NamedBase
   APP_NAME = Rails.application.class.parent.name
 
   APP_ROUTES_LINES =<<-EOS
-  match '/auth/:provider/callback' => 'sessions#callback'
+  match '/auth/:provider/callback' => 'sessions#create'
   match "/signout" => "sessions#destroy", :as => :signout
   EOS
 
@@ -36,7 +36,7 @@ class AuthGenerator < Rails::Generators::NamedBase
 
   def install
     # copy initializer
-    copy_file "omniauth.rb", "config/initializer/omniauth.rb"
+    copy_file "omniauth.rb", "config/initializers/omniauth.rb"
     # session_controllerに追加
     copy_file "sessions_controller.rb", "app/controllers/sessions_controller.rb"
     # application controllerに追加
@@ -44,7 +44,7 @@ class AuthGenerator < Rails::Generators::NamedBase
     # add user_model
     copy_file "user.rb", "app/models/user.rb"
     # session_controllerに追加
-    copy_file "migration_create_user.rb", "db/migrate/#{Time.now.strftime('%Y%m%d%H%M%S')}_create_user.rb"
+    copy_file "migration_create_users.rb", "db/migrate/#{Time.now.strftime('%Y%m%d%H%M%S')}_create_user.rb"
     # application layout
     inject_into_file "app/views/layouts/application.html.erb", APP_VIEW_LAYOUT_LINES, :after => "<body>"
     inject_into_file "app/views/layouts/application.html.erb", APP_VIEW_LAYOUT_LINES, :after => "%body"
