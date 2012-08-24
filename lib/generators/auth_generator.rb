@@ -44,10 +44,10 @@ class AuthGenerator < Rails::Generators::NamedBase
     # add user_model
     copy_file "user.rb", "app/models/user.rb"
     # session_controllerに追加
-    copy_file "migration_create_users.rb", "db/migrate/#{Time.now.strftime('%Y%m%d%H%M%S')}_create_user.rb"
+    copy_file "migration_create_users.rb", "db/migrate/#{Time.now.strftime('%Y%m%d%H%M%S')}_create_users.rb"
     # application layout
     inject_into_file "app/views/layouts/application.html.erb", APP_VIEW_LAYOUT_LINES, :after => "<body>"
-    inject_into_file "app/views/layouts/application.html.erb", APP_VIEW_LAYOUT_LINES, :after => "%body"
+    inject_into_file "app/views/layouts/application.html.haml", APP_VIEW_LAYOUT_LINES, :after => "%body"
     # config/routes
     inject_into_file "config/routes.rb", APP_ROUTES_LINES, :after => "#{APP_NAME}::Application.routes.draw do\n"
   end
