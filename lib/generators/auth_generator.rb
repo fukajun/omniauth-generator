@@ -14,7 +14,6 @@ class AuthGenerator < Rails::Generators::NamedBase
     <%= link_to "Sign Out", signout_path %>
   <% else %>
     <%= link_to "Sign in with Twitter", "/auth/twitter" %>
-    <%= link_to "Sign in with Github", "/auth/github" %>
   <% end %>
   EOS
 
@@ -34,6 +33,11 @@ class AuthGenerator < Rails::Generators::NamedBase
   end
   EOS
 
+  GEM_FILE_LINES =<<-EOS
+  gem 'omniauth'
+  gem 'omniauth-twitter'
+  EOS
+
   def install
     # copy initializer
     copy_file "omniauth.rb", "config/initializers/omniauth.rb"
@@ -50,5 +54,7 @@ class AuthGenerator < Rails::Generators::NamedBase
     inject_into_file "app/views/layouts/application.html.haml", APP_VIEW_LAYOUT_LINES, :after => "%body"
     # config/routes
     inject_into_file "config/routes.rb", APP_ROUTES_LINES, :after => "#{APP_NAME}::Application.routes.draw do\n"
+    # gemfile
+    append_to_file "Gemfile", GEM_FILE_LINES
   end
 end
