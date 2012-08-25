@@ -39,6 +39,8 @@ class AuthGenerator < Rails::Generators::NamedBase
   EOS
 
   def install
+    # gemfile
+    append_to_file "Gemfile", GEM_FILE_LINES
     # copy initializer
     copy_file "omniauth.rb", "config/initializers/omniauth.rb"
     # session_controllerに追加
@@ -51,10 +53,7 @@ class AuthGenerator < Rails::Generators::NamedBase
     copy_file "migration_create_users.rb", "db/migrate/#{Time.now.strftime('%Y%m%d%H%M%S')}_create_users.rb"
     # application layout
     inject_into_file "app/views/layouts/application.html.erb", APP_VIEW_LAYOUT_LINES, :after => "<body>"
-    inject_into_file "app/views/layouts/application.html.haml", APP_VIEW_LAYOUT_LINES, :after => "%body"
     # config/routes
     inject_into_file "config/routes.rb", APP_ROUTES_LINES, :after => "#{APP_NAME}::Application.routes.draw do\n"
-    # gemfile
-    append_to_file "Gemfile", GEM_FILE_LINES
   end
 end
