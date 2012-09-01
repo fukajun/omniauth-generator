@@ -34,8 +34,8 @@ class AuthGenerator < Rails::Generators::NamedBase
   EOS
 
   GEM_FILE_LINES =<<-EOS
-  gem 'omniauth'
-  gem 'omniauth-twitter'
+gem 'omniauth'
+gem 'omniauth-twitter'
   EOS
 
   def install
